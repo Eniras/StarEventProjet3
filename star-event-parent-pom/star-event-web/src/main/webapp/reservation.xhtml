@@ -1,0 +1,324 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:a="http://xmlns.jcp.org/jsf/passthrough"
+	xmlns:ui="http://java.sun.com/jsf/facelets">
+
+<h:head>
+	<meta charset="UTF-8"></meta>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0"></meta>
+	<title>Offre</title>
+	
+<!-- SCRIPT POUR LE DATEPICKER -->
+	<link href = "https://code.jquery.com/ui/1.10.4/themes/ui-lightness/jquery-ui.css"
+         rel = "stylesheet"></link>
+      <script src = "https://code.jquery.com/jquery-1.10.2.js"></script>
+      <script src = "https://code.jquery.com/ui/1.10.4/jquery-ui.js"></script>
+
+<!-- Javascript -->
+      <script>
+         $(function() {
+            $( "#datePicker" ).datepicker({
+               beforeShowDay : function (date) {
+                  var dayOfWeek = date.getDay ();
+                  // 0 : Sunday, 1 : Monday, ...
+                  if (dayOfWeek == 0 || dayOfWeek == 6) return [false];
+                  else return [true];
+               }
+            });
+         });
+      </script>
+<!-- SCRIPT POUR LE DATEPICKER -->
+
+
+	<!-- Bootstrap -->
+	<link rel="stylesheet"
+		href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+		integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z"
+		crossorigin="anonymous"></link>
+
+	<!--Font Awesome-->
+	<script src="https://kit.fontawesome.com/dd4348a268.js"
+		crossorigin="anonymous"></script>
+
+	<!--CSS -->
+	<link rel="stylesheet" href="resources/css/styleReservation.css"></link>
+
+	<!--Script JS-->
+	<h:outputScript library="js" name="login.js" targer="body" />
+
+</h:head>
+
+<h:body>
+	<!-- Header with navbar ========================================= -->
+
+	<header>
+		<div class="container-fluid p0">
+			<nav class="navbar navbar-expand-lg navbar-light">
+				<a class="navbar-brand">Star Event</a>
+				<button class="navbar-toggler" type="button" data-toggle="collapse"
+					data-target="#navbarSupportedContent"
+					aria-controls="navbarSupportedContent" aria-expanded="false"
+					aria-label="Toggle navigation">
+					<span class="navbar-toggler-icon"></span>
+				</button>
+
+				<div class="collapse navbar-collapse" id="navbarSupportedContent">
+					<ul class="navbar-nav mr-auto">
+						<li class="nav-item dropdown"><a
+							class="nav-link dropdown-toggle" href="#" id="navbarDropdown"
+							role="button" data-toggle="dropdown" aria-haspopup="true"
+							aria-expanded="false"> Login </a>
+							<div class="dropdown-menu" aria-labelledby="navbarDropdown">
+	<!--
+								<p:commandLink
+									action="#{loginMb.unlog()}" styleClass="dropdown-item" >
+									<h:outputText value="Log out" />
+								</p:commandLink>-->
+									
+						 	<a href="http://localhost:8080/StarEvent/login.xhtml"
+									class="dropdown-item">Log out</a>  
+									
+									
+							</div></li>
+						<li class="nav-item"><a class="nav-link" href="enterpriseProfilPart.xhtml">My
+								Account</a></li>
+						<li class="nav-item"><a class="nav-link" href="profilPartenaire.xhtml">My
+								Offers</a></li>
+						<li class="nav-item"><a class="nav-link" href="reservation.xhtml">My
+								Reservations</a></li>
+					</ul>
+				</div>
+			</nav>
+		</div>
+	</header>
+
+	<!--End Header with NavBar ========================================= -->
+
+	<!--Data Table Reservation-->
+
+	<!-- #Main ============================ -->
+	<div class="page-container">
+		<!-- ### $App Screen Content ### -->
+		<main class='main-content bgc-grey-100'>
+			<div id='mainContent'>
+				<div class="container">
+					<div class="row">
+						<div class="col-md-12">
+							<div class="bgc-white bd bdrs-3 p-20 mB-20">
+								<h4 class="c-grey-900 mB-20">Pending Reservations</h4>
+								<div id="dataTable_wrapper" class="dataTables_wrapper">
+
+									<!-- Div Table Lenght-->
+									<div class="dataTables_length" id="dataTable_lenght">
+
+										<label> Show <select name="dataTable_length"
+											aria-controls="dataTable">
+												<option value="10">10</option>
+												<option value="25">25</option>
+												<option value="50">50</option>
+												<option value="100">100</option>
+										</select> entries
+										</label>
+									</div>
+									<h:form>
+										<!--Table dataTable-->
+										<table id="dataTable"
+											class="table table-striped table-bordered dataTable"
+											cellspacing="0" width="100%" role="grid"
+											aria-describedby="dataTable_info" style="width: 100%;">
+											<thead>
+
+												<tr>
+
+													<th><h:outputText value="Start date" /></th>
+													<th><h:outputText value="End date" /></th>
+													<th><h:outputText value="Event's name" /></th>
+													<th><h:outputText value="Selected offer" /></th>
+													<th><h:outputText value="Guests number" /></th>
+													<th>Action</th>
+												</tr>
+											</thead>
+											<tbody>
+												<ui:repeat var="reservation"
+													value="#{reservationMb.listReservationsEnAttente()}">
+													<tr>
+
+
+														<td><h:outputText value="#{reservation.date_debut}" /></td>
+														<td><h:outputText value="#{reservation.date_fin}" /></td>
+														<td><h:outputText
+																value="#{reservation.evenement.titreEvenement}" /></td>
+														<td><h:outputText
+																value="#{reservation.offre.nomOffre}" /></td>
+														<td><h:outputText value="#{reservation.nbInvites}" /></td>
+
+														<td class="text-center">
+												
+														<h:commandButton update = "datatable"
+																	action="#{reservationMb.validReservation(reservation)}"
+																	class="btn btn-info" value="Valid"/>
+							
+													<bt></bt>		
+														<h:commandButton update = "datatable" 
+														action="#{reservationMb.deleteReservation(reservation)}" class="btn btn-danger" value="Delete"/>
+															</td>
+													</tr>
+												</ui:repeat>
+											</tbody>
+
+										</table>
+									</h:form>
+									<!--Div dataTable paginate-->
+									<div class="dataTables_paginate paging_simple_numbers"
+										id="dataTable_paginate">
+
+										<a class="paginate_button previous disabled"
+											aria-controls="dataTable" data-dt-idx="0" tabinex="0"
+											id="dataTable_previous">Previous</a> <span> <a
+											class="paginate_button current" aria-controls="dataTable"
+											data-dt-idx="1" tabinex="0">1</a> <a
+											class="paginate_button current" aria-controls="dataTable"
+											data-dt-idx="2" tabinex="0">2</a> <a
+											class="paginate_button current" aria-controls="dataTable"
+											data-dt-idx="3" tabinex="0">3</a>
+										</span> <a class="paginate_button current" aria-controls="dataTable"
+											data-dt-idx="4" tabinex="0">Next</a>
+
+									</div>
+
+
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</main>
+
+	</div>
+
+	<section class="section-2">
+
+		<div class="titre">
+			<h2>Booking</h2>
+		</div>
+		<div class="container-fluid"></div>
+	</section>
+
+	<div class="page-container">
+		<!-- ### $App Screen Content ### -->
+		<main class='main-content bgc-grey-100'>
+			<div id='mainContent'>
+				<div class="container">
+					<div class="row">
+						<div class="col-md-12">
+							<div class="bgc-white bd bdrs-3 p-20 mB-20">
+								<h4 class="c-grey-900 mB-20">Current Reservations</h4>
+								<div id="dataTable_wrapper" class="dataTables_wrapper">
+
+									<!-- Div Table Lenght-->
+									<div class="dataTables_length" id="dataTable_lenght">
+	<!--
+<h:form>
+										  <label> Show by date <p:calendar value="" mode="popup"></p:calendar> </label>
+										
+</h:form>
+-->
+									</div>
+
+									<!--Table dataTable-->
+									<table id="dataTable"
+										class="table table-striped table-bordered dataTable"
+										cellspacing="0" width="100%" role="grid"
+										aria-describedby="dataTable_info" style="width: 100%;">
+										<thead>
+
+											<tr>
+												<th>Start date</th>
+												<th>End date</th>
+												<th>Event's Name</th>
+												<th>Offer Selected</th>
+												<th>Number of Guests</th>
+												<th>Status</th>
+
+
+											</tr>
+										</thead>
+										<tbody>
+											<ui:repeat var="reservation"
+												value="#{reservationMb.listReservationsEnCours()}">
+												<tr>
+
+
+													<td><h:outputText value="#{reservation.date_debut}" /></td>
+													<td><h:outputText value="#{reservation.date_fin}" /></td>
+													<td><h:outputText
+															value="#{reservation.evenement.titreEvenement}" /></td>
+													<td><h:outputText
+															value="#{reservation.offre.nomOffre}" /></td>
+													<td><h:outputText value="#{reservation.nbInvites}" /></td>
+													<td><h:outputText
+															value="#{reservation.statutReservation}" /></td>
+
+													<!--  					<td class="text-center"><a class='btn btn-info btn-xs'
+													href="#"><span class="glyphicon glyphicon-edit"></span>
+														Valid</a> <a href="#" class="btn btn-danger btn-xs"><span
+														class="glyphicon glyphicon-remove"></span> Delete</a></td> 
+							-->
+												</tr>
+											</ui:repeat>
+										</tbody>
+
+									</table>
+
+
+									<!--Div dataTable paginate-->
+									<div class="dataTables_paginate paging_simple_numbers"
+										id="dataTable_paginate">
+
+										<a class="paginate_button previous disabled"
+											aria-controls="dataTable" data-dt-idx="0" tabinex="0"
+											id="dataTable_previous">Previous</a> <span> <a
+											class="paginate_button current" aria-controls="dataTable"
+											data-dt-idx="1" tabinex="0">1</a> <a
+											class="paginate_button current" aria-controls="dataTable"
+											data-dt-idx="2" tabinex="0">2</a> <a
+											class="paginate_button current" aria-controls="dataTable"
+											data-dt-idx="3" tabinex="0">3</a>
+										</span> <a class="paginate_button current" aria-controls="dataTable"
+											data-dt-idx="4" tabinex="0">Next</a>
+
+									</div>
+
+
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</main>
+	</div>
+
+
+
+
+
+	<!--  	<section class="section-calendar"></section> -->
+
+	<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
+		integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
+		crossorigin="anonymous"></script>
+	<script
+		src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"
+		integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN"
+		crossorigin="anonymous"></script>
+	<script
+		src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"
+		integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV"
+		crossorigin="anonymous"></script>
+</h:body>
+</html>

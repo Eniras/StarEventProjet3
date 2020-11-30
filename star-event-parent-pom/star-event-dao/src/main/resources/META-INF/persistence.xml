@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<persistence version="2.1"
+   xmlns="http://xmlns.jcp.org/xml/ns/persistence" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+   xsi:schemaLocation="
+        http://xmlns.jcp.org/xml/ns/persistence
+        http://xmlns.jcp.org/xml/ns/persistence/persistence_2_1.xsd">
+   <persistence-unit name="star-event-dao" transaction-type="JTA">
+   
+  <!-- j'ai ajouté un provider -->
+   	<provider>org.hibernate.ejb.HibernatePersistence</provider>
+   
+       
+      <jta-data-source>java:jboss/datasources/StarEventDS</jta-data-source>
+      
+      <!-- TODO 3 : Ajout des entités ici pour la prise en charge par JPA  -->
+      <class>fr.isika.cdi6.starevent.data.model.admin.Admin</class>
+      <class>fr.isika.cdi6.starevent.data.model.gestion.Contrat</class>
+      <class>fr.isika.cdi6.starevent.data.model.gestion.Entreprise</class>
+      <class>fr.isika.cdi6.starevent.data.model.gestion.Evenement</class>
+      <class>fr.isika.cdi6.starevent.data.model.gestion.Partenaire</class>
+      <class>fr.isika.cdi6.starevent.data.model.gestion.Reservation</class>
+      <class>fr.isika.cdi6.starevent.data.model.messagerie.Mail</class>
+      <class>fr.isika.cdi6.starevent.data.model.messagerie.Messagerie</class>
+      <class>fr.isika.cdi6.starevent.data.model.offres.CatalogueOffres</class>
+      <class>fr.isika.cdi6.starevent.data.model.offres.Offre</class>
+      <class>fr.isika.cdi6.starevent.data.model.taches.Tache</class>
+      <class>fr.isika.cdi6.starevent.data.model.taches.ToDo</class>
+      <class>fr.isika.cdi6.starevent.data.model.utilisateurs.Client</class>
+      <class>fr.isika.cdi6.starevent.data.model.utilisateurs.DashboardClient</class>
+      <class>fr.isika.cdi6.starevent.data.model.utilisateurs.ProfilUtilisateur</class>
+      <class>fr.isika.cdi6.starevent.data.model.utilisateurs.Utilisateur</class>
+      
+      <properties><!-- j'ai ajouté 3 lignes property -->
+         <property name="hibernate.dialect" value="org.hibernate.dialect.MySQL57Dialect"/>
+         <property name="hibernate.hbm2ddl.auto" value="create-drop" />
+         <property name="hibernate.show_sql" value="true" />
+      </properties>
+   </persistence-unit>
+</persistence>
+

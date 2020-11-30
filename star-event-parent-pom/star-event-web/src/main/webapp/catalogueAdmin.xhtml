@@ -1,0 +1,299 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:a="http://xmlns.jcp.org/jsf/passthrough"
+	xmlns:ui="http://java.sun.com/jsf/facelets">
+​
+<h:head>
+	<title>Events</title>
+	<meta charset="UTF-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+	
+​
+​
+​
+	<!-- Bootstrap -->
+	<!--<link rel="stylesheet" href="resources/css/bootstrap.min.css" />  -->
+	<link rel="stylesheet"
+		href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+		integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z"
+		crossorigin="anonymous" />
+​
+	<!--Font Awesome-->
+	<script src="https://kit.fontawesome.com/dd4348a268.js"
+		crossorigin="anonymous"></script>
+​
+​
+	<!-- Feuille de Style CSS pour Login -->
+	<link rel="stylesheet" href="resources/css/catalogue.css" />
+	
+​
+	
+</h:head>
+<h:body>
+	<!-- Header with navbar-->
+​
+	
+	<!-- Header with navbar-->
+​
+	<header>
+		<div class="container-fluid p0">
+			<nav class="navbar navbar-expand-lg navbar-light">
+				<a class="navbar-brand">Star Event</a>
+				<button class="navbar-toggler" type="button" data-toggle="collapse"
+					data-target="#navbarSupportedContent"
+					aria-controls="navbarSupportedContent" aria-expanded="false"
+					aria-label="Toggle navigation">
+					<span class="navbar-toggler-icon"></span>
+				</button>
+				​
+				<div class="collapse navbar-collapse" id="navbarSupportedContent">
+					<ul class="navbar-nav mr-auto">
+						<li class="nav-item dropdown"><a
+							class="nav-link dropdown-toggle"
+							href="http://localhost:8080/StarEvent" id="navbarDropdown"
+							role="button" data-toggle="dropdown" aria-haspopup="true"
+							aria-expanded="false"> Login </a>
+							<div class="dropdown-menu" aria-labelledby="navbarDropdown">
+								<a class="dropdown-item" href="http://localhost:8080/StarEvent">Log
+									out</a>
+							</div></li>
+						<li class="nav-item"><a class="nav-link"
+							href="entrepriseProfilAdmin.xhtml">My Account</a></li>
+						<li class="nav-item"><a class="nav-link"
+							href="catalogueAdmin.xhtml">Catalogue</a></li>
+						<li class="nav-item"><a class="nav-link" href="#">Statistics</a>
+						</li>
+						<li class="nav-item"><a class="nav-link" href="#">Contract</a>
+						</li>
+					</ul>
+				</div>
+			</nav>
+		</div>
+	</header>
+​
+	<!--End Header with NavBar-->
+​
+<h:form>
+		<section class="section-1">
+			<div class="container">
+				<div id="accordion">
+					<div class="row">
+						<div class="col-lg-12">
+							<div class="text-center">
+								<h3>New Event</h3>
+							</div>
+						</div>
+					</div>
+					​
+					<div class="card card-default">
+						<div class="card-header">
+							<h4 class="card-title">
+								<a data-toggle="collapse" data-parent="#accordion"
+									href="#collapse1"> <i
+									class="glyphicon glyphicon-search text-gold"></i>
+									<h5>CREATE AN OFFER</h5>
+								</a>
+							</h4>
+						</div>
+						<div id="collapse1" class="collapse show">
+							<div class="card-body">
+								<div class="row">
+									<div class="col-md-3 col-lg-4">
+										<div class="form-group">
+											<label class="control-label">Title</label>
+
+											<h:inputText class="form-control"
+												value="#{profilAdminMb.offreCree.nomOffre}" />
+										</div>
+									</div>
+									​
+								</div>
+								​
+								<div class="row">
+									​
+									<div class="col-md-1 col-lg-4">
+										<div class="form-group">
+											<label class="control-label">Max Capacity</label>
+
+											<h:inputText class="form-control"
+												value="#{profilAdminMb.offreCree.capaciteMax}" />
+										</div>
+									</div>
+									<div class="col-md-2 col-lg-3">
+										<div class="form-group">
+											<label class="control-label">Description</label>
+											<h:inputText class="form-control"
+												value="#{profilAdminMb.offreCree.descriptionOffre}" />
+											<!-- 	-->
+										</div>
+									</div>
+									​
+									<div class="col-md-2 col-lg-3">
+										<div class="form-group">
+											<label class="control-label">Price</label>
+											<h:inputText class="form-control"
+												value="#{profilAdminMb.offreCree.prixOffre}" />
+										</div>
+									</div>
+									​
+
+								</div>
+								​
+								<div class="row">
+
+
+									<div class="col-md-2 col-lg-3">
+										<div class="form-group">
+											<label class="control-label">Image</label>
+											<div class="custom-file">
+
+												<br />
+												<h:form enctype="multipart/form-data">
+													<p:fileUpload class="custom-file-input"
+														value="#{profilAdminMb.file}" mode="simple"
+														skinSimple="true" />
+													<br />
+													<h:commandButton ajax="false"
+														action="#{profilAdminMb.upload}" disabled="true" />
+												</h:form>
+
+
+												<label class="custom-file-label" for="inputGroupFile01">Choose
+													file</label>
+											</div>
+										</div>
+									</div>
+									<div class="col-md-2 col-lg-3">
+										<div class="form-group">
+											<label class="control-label">Selected Partner</label>
+											<div class="custom-file">
+
+												<h:selectOneMenu class="custom-select"
+													value="#{profilAdminMb.idPartenaireSelectionne}">
+
+													<f:selectItems value="#{profilAdminMb.listPartners}" var="partenaire"
+														itemLabel="#{partenaire.entreprise.nomEntreprise}" itemValue="#{partenaire.idUtilisateur}">
+													</f:selectItems>
+												</h:selectOneMenu>
+											</div>
+										</div>
+									</div>
+
+
+
+								</div>
+								​ ​
+								<div class="row">
+
+									<div class="col-md-2 col-lg-3">
+										<div class="form-group">
+
+											<h:commandButton update="catalogue" class="btn btn-primary"
+												action="#{profilAdminMb.creerOffre()}" value="Valid">
+												
+											</h:commandButton>
+
+										</div>
+									</div>
+
+								</div>
+								​ ​
+							</div>
+							`
+						</div>
+					</div>
+					​
+				</div>
+			</div>
+		</section>
+
+​
+
+​
+	<!-- A faire si on a le temps mais ce concentrer sur details.xhtml -->
+​
+​
+    <section class="section-3" id="catalogue">
+			​
+
+			<!--Section 3 Les Offres du Partenaires-->
+
+			<div class="container-fluid p0">
+				<div class="cards">
+					<div class="titre">
+						<h2>Catalogue</h2>
+					</div>
+
+					<div class="container">
+						<label>Select by:</label>
+
+
+						<bt></bt>
+						<h:commandButton class="btn btn-info"
+							action="#{offreMb.offreAll()}" update=":ourCards" value="All" />
+						<bt></bt>
+						<h:commandButton class="btn btn-info"
+							action="#{offreMb.offreSalle()}" update=":ourCards" value="Venue" />
+						<bt></bt>
+						<h:commandButton class="btn btn-info"
+							action="#{offreMb.offreRestaurant()}" update=":ourCards"
+							value="Restaurant" />
+						<bt></bt>
+						<h:commandButton class="btn btn-info"
+							action="#{offreMb.offreTraiteur()}" update=":ourCards"
+							value="Caterer" />
+
+					</div>
+
+					<div class="row" id="ourCards">
+
+						<!--Offre 1 du Partenaire VOIR-->
+						​
+						<ui:repeat var="offre" value="#{offreMb.offres}">
+
+							<div class="card" style="width: 18rem;">
+								<img src="#{offre.imageOffre}" class="card-img-top" />
+								<div class="card-body">
+									<h5 class="card-title">#{offre.nomOffre}</h5>
+									<p class="card-text">Some quick example text to build on
+										the card title and make up the bulk of the card's content.</p>
+
+									<!-- Faire la bonne redirection vers la Page offreSelectByClient pour voir offre sans les boutons de modifs -->
+									<h:commandButton class="btn btn-primary"
+										action="#{offreMb.detailOffreSelectByClient(offre)}" value="Details" />
+
+
+								</div>
+							</div>
+
+						</ui:repeat>
+						​
+
+					</div>
+				</div>
+			</div>
+
+
+		</section>
+​
+​</h:form>
+
+
+	<!--  	<section class="section-calendar"></section> -->
+​
+	<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
+		integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
+		crossorigin="anonymous"></script>
+	<script
+		src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"
+		integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN"
+		crossorigin="anonymous"></script>
+	<script
+		src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"
+		integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV"
+		crossorigin="anonymous"></script>
+</h:body>
+</html>

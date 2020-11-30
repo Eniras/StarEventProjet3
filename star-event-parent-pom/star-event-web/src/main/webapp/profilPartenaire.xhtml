@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:a="http://xmlns.jcp.org/jsf/passthrough"
+	xmlns:ui="http://java.sun.com/jsf/facelets">
+​
+<h:head>
+	<meta charset="UTF-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+	<title>Partner</title>
+​
+​
+​
+	<!-- Bootstrap -->
+	<!--<link rel="stylesheet" href="resources/css/bootstrap.min.css" />  -->
+	<link rel="stylesheet"
+		href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+		integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z"
+		crossorigin="anonymous" />
+​
+	<!--Font Awesome-->
+	<script src="https://kit.fontawesome.com/dd4348a268.js"
+		crossorigin="anonymous"></script>
+​
+​
+	<!-- Feuille de Style CSS pour Login -->
+	<link rel="stylesheet" href="resources/css/stylePartenaire.css" />
+	
+​
+	
+</h:head>
+<h:body>
+	<!-- Header with navbar-->
+​
+	<header>
+		<div class="container-fluid p0">
+			<nav class="navbar navbar-expand-lg navbar-light">
+				<a class="navbar-brand">Star Event</a>
+				<button class="navbar-toggler" type="button" data-toggle="collapse"
+					data-target="#navbarSupportedContent"
+					aria-controls="navbarSupportedContent" aria-expanded="false"
+					aria-label="Toggle navigation">
+					<span class="navbar-toggler-icon"></span>
+				</button>
+
+				<div class="collapse navbar-collapse" id="navbarSupportedContent">
+					<ul class="navbar-nav mr-auto">
+						<li class="nav-item dropdown"><a
+							class="nav-link dropdown-toggle" href="#" id="navbarDropdown"
+							role="button" data-toggle="dropdown" aria-haspopup="true"
+							aria-expanded="false"> Login </a>
+							<div class="dropdown-menu" aria-labelledby="navbarDropdown">
+	<!--
+								<p:commandLink
+									action="#{loginMb.unlog()}" styleClass="dropdown-item" >
+									<h:outputText value="Log out" />
+								</p:commandLink>-->
+									
+						 	<a href="http://localhost:8080/StarEvent/login.xhtml"
+									class="dropdown-item">Log out</a>  
+									
+									
+							</div></li>
+						<li class="nav-item"><a class="nav-link" href="enterpriseProfilPart.xhtml">My
+								Account</a></li>
+						<li class="nav-item"><a class="nav-link" href="profilPartenaire.xhtml">My
+								Offers</a></li>
+						<li class="nav-item"><a class="nav-link" href="reservation.xhtml">My
+								Reservations</a></li>
+					</ul>
+				</div>
+			</nav>
+		</div>
+	</header>
+​
+​
+​
+	<!--End Header with NavBar-->
+​
+<!--Section 1 -->
+​
+    <section class="section-1">
+		<div class="container">
+			<!--Titre Mon-->
+			<div class="row justify-content-center">
+				<div class="col-md-5">
+					<div class="styled_heading">
+						<h2>Contents</h2>
+					</div>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-4 featured-responsive">
+					<div class="rect">
+						<h4>My Offers</h4>
+						<!--                    <button type="button" class="btn btn-primary">Ajouter</button> -->
+						<button href ="#offers" class="btn btn-primary">Show</button>
+
+					</div>
+				</div>
+				<div class="col-md-4 featured-responsive">
+					<div class="rect">
+						<h4>My Reservations</h4>
+						<h:button value="Details" type="button" outcome="reservation"
+							class="btn btn-primary" />
+					</div>
+				</div>
+				<div class="col-md-4 featured-responsive">
+					<div class="rect">
+						<h4>My Account</h4>
+						<h:button value="Edit" type="button" outcome="enterpriseProfilPart"
+							class="btn btn-primary" />
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+​
+    <!--End Section 1 -->
+​
+    <!--Section 2  Chiffre clés-->
+​
+    <section class="section-2">
+		<div class="container-fluid">
+			<h2>Our Numbers</h2>
+			<div class="row">
+				<div class="col-md-4 col-sm-12">
+					<h:outputText value="#{profilPartenaireMb.offersNb}" class="nombre"></h:outputText>
+					<h6>Offers</h6>
+				</div>
+				<div class="col-md-4 col-sm-12">
+					<h:outputText value="#{profilPartenaireMb.reservationsNb}"
+						class="nombre"></h:outputText>
+					<h6>Booking</h6>
+				</div>
+				<div class="col-md-4 col-sm-12">
+					<h:outputText value="#{profilPartenaireMb.eventsNb}" class="nombre"></h:outputText>
+					<h6>Events</h6>
+				</div>
+			</div>
+		</div>
+	</section>
+​
+    <!-- End Section 2        EN COURS DE TRAVAIL PB        -->
+​<h:form>
+		<!--Section 3 Les Offres du Partenaires-->
+		<section class="section-3">
+			<div class="container-fluid p0">
+				<div class="cards">
+					<div class="titre">
+						<h2 >Offers</h2>
+					</div>
+					<div id = "offers" class="row">
+
+						<!--Offre 1 du Partenaire VOIR-->
+						​
+						<ui:repeat var="offre" value="#{profilPartenaireMb.offres}">
+
+							<div class="card" style="width: 18rem;">
+								<img src="#{offre.imageOffre}" class="card-img-top" />
+								<div class="card-body">
+									<h5 class="card-title">#{offre.nomOffre}</h5>
+									<p class="card-text">Some quick example text to build on
+										the card title and make up the bulk of the card's content.</p>
+									<h:commandButton href="#" class="btn btn-primary"
+										action="#{offreMb.detailOffre(offre)}" value="Details" />
+								</div>
+							</div>
+
+						</ui:repeat>
+						​
+
+					</div>
+				</div>
+			</div>
+		</section>
+​</h:form>
+​
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
+		integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
+		crossorigin="anonymous"></script>
+	<script
+		src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"
+		integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN"
+		crossorigin="anonymous"></script>
+	<script
+		src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"
+		integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV"
+		crossorigin="anonymous"></script>
+​
+</h:body>
+​
+</html>

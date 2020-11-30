@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:a="http://xmlns.jcp.org/jsf/passthrough">
+
+
+<h:head>
+	<title>Register Star Event</title>
+	<meta charset="UTF-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+	<title>Login Test</title>
+
+
+
+	<!-- Bootstrap -->
+	<!--<link rel="stylesheet" href="resources/css/bootstrap.min.css" />  -->
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous"/>
+
+	<!--Font Awesome-->
+	<script src="https://kit.fontawesome.com/dd4348a268.js"
+		crossorigin="anonymous"></script>
+
+
+	<!-- Feuille de Style CSS pour Login -->
+	<link rel="stylesheet" href="resources/css/styleRegister.css" />
+	
+		<!--Script JS-->
+	<h:outputScript  library="js" name="login.js" targer ="body"/>
+	
+	
+</h:head>
+<h:body>
+	<!-- Header with navbar-->
+
+	<header>
+		<div class="container-fluid p0">
+			<nav class="navbar navbar-expand-lg navbar-light">
+				<a class="navbar-brand" href="index.html">Star Event</a>
+				<button class="navbar-toggler" type="button" data-toggle="collapse"
+					data-target="#navbarSupportedContent"
+					aria-controls="navbarSupportedContent" aria-expanded="false"
+					aria-label="Toggle navigation">
+					<span class="navbar-toggler-icon"></span>
+				</button>
+
+				<div class="collapse navbar-collapse" id="navbarSupportedContent">
+					<ul class="navbar-nav mr-auto">
+						<li class="nav-item active"><a class="nav-link"
+							href="login.html">Login <span class="sr-only">(current)</span></a>
+						</li>
+						<li class="nav-item"><a class="nav-link" href="#">Link</a></li>
+						<li class="nav-item dropdown"><a
+							class="nav-link dropdown-toggle" href="#" id="navbarDropdown"
+							role="button" data-toggle="dropdown" aria-haspopup="true"
+							aria-expanded="false"> Dropdown </a>
+							<div class="dropdown-menu" aria-labelledby="navbarDropdown">
+								<a class="dropdown-item" href="#">Action</a> <a
+									class="dropdown-item" href="#">Another action</a>
+								<div class="dropdown-divider"></div>
+								<a class="dropdown-item" href="#">Something else here</a>
+							</div></li>
+					</ul>
+
+				</div>
+			</nav>
+		</div>
+	</header>
+
+
+
+	<!--End Header with NavBar-->
+
+
+	<!--register form form-->
+
+	<div class="container">
+       <div class="Back">
+            <i class="fa fa-arrow-left" onclick="Back()"></i>
+        </div>
+        <p class="h2 text-center">Form</p>
+        <form action="" method="post">
+            <div class="preview text-center">
+                <img class="preview-img" src="http://simpleicon.com/wp-content/uploads/account.png" alt="Preview Image" width="200" height="200"/>
+                <div class="browse-button">
+                    <i class="fa fa-pencil-alt"></i>
+                    <input class="browse-input" type="file"  name="UploadedFile" id="UploadedFile"/>
+                </div>
+                <span class="Error"></span>
+            </div>
+            <div class="form-group">
+                <label>Full Name:</label>
+                <input class="form-control" type="text" name="fullname" a:placeholder="Enter Your Full Name"/>
+                <span class="Error"></span>
+            </div>
+            <div class="form-group">
+                <label>Email:</label>
+                <input class="form-control" type="email" name="email"  a:placeholder="Enter Your Email"/>
+                <span class="Error"></span>
+            </div>
+            <div class="form-group">
+                <label>Password:</label>
+                <input class="form-control" type="password" name="password" a:placeholder="Enter Password"/>
+                <span class="Error"></span>
+            </div>
+          
+            <div class="form-group">
+                <input class="btn btn-primary btn-block" type="submit" value="Submit"/>
+            </div>
+        </form>
+    </div>
+
+
+<!--  <h:outputScript src="resources/js/bootstrap.min.js"></h:outputScript >-->
+
+
+
+
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous"></script>
+
+</h:body>
+
+</html>

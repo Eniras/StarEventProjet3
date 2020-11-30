@@ -1,0 +1,118 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+
+	<modelVersion>4.0.0</modelVersion>
+
+	<groupId>fr.isika.cdi6.starevent</groupId>
+	<artifactId>star-event-parent-pom</artifactId>
+	<version>1.0.0-SNAPSHOT</version>
+	<packaging>pom</packaging>
+	
+	<organization>
+		<name>Projet ISIKA</name>
+		<url>http://www.projet-isika.com</url>
+	</organization>
+	
+	<developers>
+		<developer>
+			<name>Claudia MATSIAZE</name>
+		</developer>
+		<developer>
+			<name>Sandrine CHASTAING</name>
+		</developer>
+		<developer>
+			<name>Nolwenn GALEA</name>
+		</developer>
+		<developer>
+			<name>Halim ALLOUCHE</name>
+		</developer>
+		<developer>
+			<name>Pierre-Baptiste BOSSARD</name>
+		</developer>
+		<developer>
+			<name>Florane PLOYART</name>
+		</developer>
+	</developers>
+	
+	<properties>
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+		<maven.compiler.source>1.8</maven.compiler.source>
+		<maven.compiler.target>1.8</maven.compiler.target>
+		<version.war.plugin>2.5</version.war.plugin>
+        <version.jboss.bom>8.2.1.Final</version.jboss.bom>
+	</properties>
+	
+	<dependencyManagement>
+        <dependencies>
+            <dependency>
+                <groupId>org.wildfly.bom</groupId>
+                <artifactId>jboss-javaee-7.0-with-tools</artifactId>
+                <version>${version.jboss.bom}</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
+            <dependency>
+                <groupId>org.wildfly.bom</groupId>
+                <artifactId>jboss-javaee-7.0-with-hibernate</artifactId>
+                <version>${version.jboss.bom}</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
+        </dependencies>
+    </dependencyManagement>
+	
+	<build>
+		<finalName>star-event-${project.version}</finalName>
+		<plugins>
+			<!-- Plugin maven pour la compilation du projet -->
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-compiler-plugin</artifactId>
+				<version>3.8.1</version>
+				<configuration>
+					<source>${maven.compiler.source}</source>
+					<target>${maven.compiler.target}</target>
+					<encoding>${project.build.sourceEncoding}</encoding>
+				</configuration>
+			</plugin>
+		</plugins>
+	</build>
+
+	<dependencies>
+		<dependency>
+			<groupId>javax</groupId>
+			<artifactId>javaee-api</artifactId>
+			<version>7.0</version>
+			<scope>provided</scope>
+		</dependency>
+        <dependency>
+            <groupId>org.jboss.spec.javax.ejb</groupId>
+            <artifactId>jboss-ejb-api_3.2_spec</artifactId>
+            <scope>provided</scope>
+            
+            	<!-- -->
+			<exclusions>
+				<exclusion>
+					<groupId>org.jboss.logging</groupId>
+					<artifactId>jboss-logging</artifactId>
+				</exclusion>
+			</exclusions>
+			<!-- -->
+            
+        </dependency>
+		<dependency>
+			<groupId>junit</groupId>
+			<artifactId>junit</artifactId>
+			<scope>test</scope>
+		</dependency>
+	</dependencies>
+
+	<modules>
+		<module>star-event-data</module>
+		<module>star-event-services</module>
+		<module>star-event-web</module>
+		<module>star-event-dao</module>
+	</modules>
+
+</project>

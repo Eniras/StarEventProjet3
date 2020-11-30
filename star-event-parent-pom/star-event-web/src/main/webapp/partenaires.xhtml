@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
+<h:head>
+	<title>Test Affichage Partenaire</title>
+</h:head>
+<h:body>
+	<h1>Gestion Partenaires</h1>
+	<p:separator />
+	<br />
+	<h2>Partenaires list</h2>
+	<h:form id="partenaires">
+
+		<p:growl id="growl" sticky="true" />
+		<p:dataTable id="partenaires" var="partenaire"
+			value="#{partenaireMb.partenaires}" style="width:85%;">
+
+			<p:column headerText="Id">
+				<h:outputText value="#{partenaire.idUtilisateur}" />
+			</p:column>
+
+			<p:column headerText="First name">
+				<p:inputText id="firstNameInput"
+					value="#{partenaire.profilPartenaire.nomUtilisateur}" />
+			</p:column>
+
+			<p:column headerText="Operation">
+				<p:commandButton value="voir contrat" icon="ui-icon-closethick"
+					action="#{contratMb.creerContrat(partenaire.idUtilisateur)}"
+					styleClass="ui-priority-primary">
+				</p:commandButton>
+
+			</p:column>
+
+			<p:column headerText="Id contrat">
+				<p:inputText id="idContrat" value="#{partenaire.contrat.id_contrat}" />
+			</p:column>
+		</p:dataTable>
+
+
+		<p:commandButton update="partenaires" value="Creer"
+			icon="ui-icon-closethick" action="#{partenaireMb.creer}"
+			styleClass="ui-priority-primary">
+		</p:commandButton>
+
+<h:outputText value="#{partenaireMb.partenaireEnregistre.login}" />
+
+		<p:commandButton update="partenaires" value="Save"
+			icon="ui-icon-closethick" action="#{partenaireMb.save()}"
+			styleClass="ui-priority-primary">
+		</p:commandButton>
+
+
+		<h5>Click on save (if you changed data on table)</h5>
+		<br />
+	</h:form>
+
+</h:body>
+</html>

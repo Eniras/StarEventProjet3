@@ -1,0 +1,144 @@
+@charset "UTF-8";
+
+@import url('https://fonts.googleapis.com/css2?family=Pacifico&display=swap');
+
+
+*{
+    padding:0;
+    margin:0;
+    box-sizing: border-box;
+}
+
+
+
+
+body {
+background-color: rgba(231, 239, 240, 0.973) ;
+}
+
+.navbar{
+    background-color: rgba(231, 239, 240, 0.973) ;
+}
+
+
+
+/*Section 1*/
+
+
+.section-1{
+    padding:30px;
+}
+
+.section-1  h2{
+    text-align: center;
+    font-family: "Pacifico", sans-serif;
+
+}
+
+
+
+
+
+
+.rect{
+    top: 3.5vmin;
+    text-align: center;
+    position: relative;
+    z-index: 1;
+    background: white;
+    width: 17rem;
+    height: 10rem;
+    padding-top: 4.5vmin;
+    margin: 1rem;
+    border-radius: 0.5em;
+   
+   
+
+    
+}
+
+.rect:hover{
+    transform: translateY(-10px);
+}
+
+
+.rect .btn{
+   
+    color: whitesmoke;
+    background: #FEBD09;
+    border: none;
+    font: bold;
+    border-radius: 30px;
+
+}
+
+
+
+/*Section 2 To dos*/
+
+.section-2{
+    padding:30px;
+}
+
+
+.section-2 h2{
+
+    text-align: center;
+    font-family: "Pacifico", sans-serif;
+
+}
+
+
+
+.section-2  h2::after{
+
+    position: absolute;
+    content: "";
+    width: 100px;
+    height: 3px;
+    background:#FEBD09 ;
+    bottom: 0;
+    left: 40%;
+
+}
+
+.todolist{
+    background-color:#FFF;
+    padding:20px 20px 10px 20px;
+    margin-top:30px;
+}
+.todolist h1{
+    margin:0;
+    padding-bottom:20px;
+    text-align:center;
+}
+.form-control{
+    border-radius:0;
+}
+li.ui-state-default{
+    background:#fff;
+    border:none;
+    border-bottom:1px solid #ddd;
+}
+
+li.ui-state-default:last-child{
+    border-bottom:none;
+}
+
+
+#done-items li{
+    padding:10px 0;
+    border-bottom:1px solid #ddd;
+    text-decoration:line-through;
+}
+#done-items li:last-child{
+    border-bottom:none;
+}
+#checkAll{
+    margin-top:10px;
+}
+
+
+
+
+

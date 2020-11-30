@@ -1,0 +1,102 @@
+@charset "UTF-8";
+/*NavBar and body*/
+* {
+	padding: 0;
+	margin: 0;
+	box-sizing: border-box;
+}
+
+body {
+	background-color: rgba(231, 239, 240, 0.973);
+}
+
+.navbar {
+	background-color: rgba(231, 239, 240, 0.973);
+}
+
+/*Data Table style*/
+.container {
+	border-radius: 30px;
+	padding: 10px;
+	background: white;
+}
+
+.table .dataTable {
+	border-bottom: 1px solid;
+	margin-bottom: 20px;
+}
+
+.sorting_asc {
+	outline: none;
+}
+
+.dataTables_wrapper {
+	overflow: hidden;
+	padding-bottom: 5px;
+}
+
+.dataTables_wrapper  .dataTables_length {
+	float: left;
+}
+
+.select {
+	border: 1px solid;
+	border-radius: 2px;
+	box-shadow: none;
+	height: 35px;
+	font-size: 14px;
+	padding: 5px;
+	margin-left: 5px;
+	margin-right: 5px;
+	transition: all 0.2s ease-in;
+}
+
+.dataTables_filter {
+	float: right;
+}
+
+.input {
+	border: 1px solid;
+	border-radius: 2px;
+	box-shadow: none;
+	height: 35px;
+	font-size: 14px;
+	margin-left: 15px;
+	padding: 5px;
+	transition: all 0.2s ease-in;
+}
+
+.dataTables_info {
+	float: left;
+}
+
+.dataTables_paginate {
+	float: right;
+}
+
+.paginate_button {
+	padding: 6px 12px;
+	border-radius: 2px;
+	margin-right: 10px;
+	transition: all 0.2s ease-in-out;
+	text-decoration: none;
+	border-radius: 2px;
+	text-decoration: none;
+}
+
+
+
+
+/*Section 2 */
+
+.section-2{
+    margin: 60px;
+    padding: 50px;
+    background: #FEBD09;
+}
+
+
+/*Section  Date Picker*/
+
+
+#ui-datepicker-div { font-size: 12px; } 

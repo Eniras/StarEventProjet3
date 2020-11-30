@@ -1,0 +1,374 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:a="http://xmlns.jcp.org/jsf/passthrough"
+	xmlns:ui="http://java.sun.com/jsf/facelets">
+​
+<h:head>
+	<title>Dashboard</title>
+	<meta charset="UTF-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+	
+​
+​<!-- Bootstrap -->
+	<link rel="stylesheet"
+		href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+		integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z"
+		crossorigin="anonymous"></link>
+
+	<link rel="stylesheet" href="resources/css/dashboardAdmin.css"></link>
+
+
+	<!--Font Awesome-->
+	<script src="https://kit.fontawesome.com/dd4348a268.js"
+		crossorigin="anonymous"></script>
+
+</h:head>
+<h:body>
+
+	<!-- Header with navbar-->
+
+	<header>
+		<div class="container-fluid p0">
+			<nav class="navbar navbar-expand-lg navbar-light">
+				<a class="navbar-brand">Star Event</a>
+				<button class="navbar-toggler" type="button" data-toggle="collapse"
+					data-target="#navbarSupportedContent"
+					aria-controls="navbarSupportedContent" aria-expanded="false"
+					aria-label="Toggle navigation">
+					<span class="navbar-toggler-icon"></span>
+				</button>
+
+				<div class="collapse navbar-collapse" id="navbarSupportedContent">
+					<ul class="navbar-nav mr-auto">
+						<li class="nav-item dropdown"><a
+							class="nav-link dropdown-toggle" href="#" id="navbarDropdown"
+							role="button" data-toggle="dropdown" aria-haspopup="true"
+							aria-expanded="false"> Login </a>
+							<div class="dropdown-menu" aria-labelledby="navbarDropdown">
+								<a class="dropdown-item" href="http://localhost:8080/StarEvent">Log
+									out</a>
+							</div></li>
+						<li class="nav-item"><a class="nav-link"
+							href="entrepriseProfilAdmin.xhtml">My Account</a></li>
+						<li class="nav-item"><a class="nav-link" href="catalogueAdmin.xhtml">Catalogue</a>
+						</li>
+						<li class="nav-item"><a class="nav-link" href="#">Statistics</a>
+						</li>
+						<li class="nav-item"><a class="nav-link" href="#">Contract</a>
+						</li>
+					</ul>
+				</div>
+			</nav>
+		</div>
+	</header>
+	
+​
+<!--Contents-->
+	<section class="section-1">
+
+		<div class="container">
+			<h2>Contents</h2>
+			<div class="row justify-content-center">
+				<div class="col-md-3 featured-responsive">
+					<div class="rect">
+						<h4>My Account</h4>
+						<a type="button" class="btn btn-primary">Edit</a>
+					</div>
+				</div>
+				<div class="col-md-3 featured-responsive">
+					<div class="rect">
+						<h4>Catalogue</h4>
+						<a type="button" href = "catalogueAdmin.xhtml" class="btn btn-primary">Edit</a>
+					</div>
+				</div>
+				<div class="col-md-3 featured-responsive">
+					<div class="rect">
+						<h4>Statistics</h4>
+						<a type="button" class="btn btn-secondary" aria-disabled="true">Details</a>
+					</div>
+				</div>
+				<div class="col-md-3 featured-responsive">
+					<div class="rect">
+						<h4>Contract</h4>
+						<a type="button" class="btn btn-primary" aria-disabled="true">Details</a>
+					</div>
+				</div>
+
+
+
+			</div>
+		</div>
+	</section>
+
+
+
+
+
+
+
+	<h:form>
+		<section class="section-1">
+			<div class="container">
+				<div id="accordion">
+					<div class="row">
+						<div class="col-lg-12">
+							<div class="text-center">
+								<h2>To Do</h2>
+							</div>
+						</div>
+					</div>
+
+
+			<!-- Test deuxième formulaire -->
+
+					<div class="card card-default">
+						<div class="card-header">
+							<h4 class="card-title">
+								<a data-toggle="collapse" data-parent="#accordion"
+									href="#collapse1"> <i
+									class="glyphicon glyphicon-search text-gold"></i>
+									<h5>TASKS</h5>
+								</a>
+							</h4>
+						</div>
+
+						<div id="collapse1" class="collapse show">
+							<div class="card-body">
+
+								<div class="page-container">
+									<!-- ### $App Screen Content ### -->
+									<main class='main-content bgc-grey-100'>
+										<div id='mainContent'>
+											<div class="container">
+												<div class="row">
+													<div class="col-md-12">
+														<div class="bgc-white bd bdrs-3 p-20 mB-20">
+															<h4 class="c-grey-900 mB-20">Pending Tasks</h4>
+															<div id="dataTable_wrapper" class="dataTables_wrapper">
+
+																<h:form>
+																	<!--Table dataTable-->
+																	<table id="dataTable"
+																		class="table table-striped table-bordered dataTable"
+																		cellspacing="0" width="100%" role="grid"
+																		aria-describedby="dataTable_info" style="width: 100%;">
+																		<thead>
+
+																			<tr>
+
+																				<th><h:outputText value="Start Date" /></th>
+																				<th><h:outputText value="End Date" /></th>
+																				<th><h:outputText value="Description" /></th>
+																				<th><h:outputText value="Statut" /></th>
+																				<th><h:outputText value="New Statut" /></th>
+																		<!--  	<th><h:outputText value="Priority" /></th>-->	
+																				<th>Action</th>
+																			</tr>
+																		</thead>
+																		<tbody>
+																			<ui:repeat var="tache"
+																				value="#{profilAdminMb.listeTaches}">
+																				<tr>
+
+
+																					<td><h:outputText value="#{tache.date_debut}" /></td>
+																					<td><h:outputText value="#{tache.date_fin}" /></td>
+																					<td><h:outputText value="#{tache.description}" /></td>
+																					<td><h:outputText value="#{tache.statutTache}" /></td>
+																					<td><h:selectOneMenu update=":dataTable"
+																							onselect="#{profilAdminMb.modifierStatut(tache)}"
+																							class="custom-select"
+																							value="#{profilAdminMb.newStatut}">
+
+																							<f:selectItems
+																								value="#{profilAdminMb.listStatus}" var="statut"
+																								itemLabel="#{statut.toString()}"
+																								itemValue="#{statut.toString()}">
+																							</f:selectItems>
+																						</h:selectOneMenu></td>
+																				
+																				<!--  	<td><h:outputText
+																							voir priority /></td>-->
+
+
+																					<td><h:commandButton action="#{profilAdminMb.update()}" value="Save" class="btn btn-primary"/> <bt></bt>
+																						<h:commandButton update="datatable" action="#{profilAdminMb.deleteTask(tache)}" value="Delete" class="btn btn-danger"/></td>
+																				</tr>
+																			</ui:repeat>
+																		</tbody>
+
+																	</table>
+																</h:form>
+															</div>
+														</div>
+													</div>
+												</div>
+											</div>
+										</div>
+									</main>
+
+								</div>
+
+
+
+
+
+							</div>
+							`
+						</div>
+					</div>
+
+<bt></bt>
+					<div class="card card-default">
+						<div class="card-header">
+							<h4 class="card-title">
+								<a data-toggle="collapse" data-parent="#accordion"
+									href="#collapse1"> <i
+									class="glyphicon glyphicon-search text-gold"></i>
+									<h5>NEW TASK</h5>
+								</a>
+							</h4>
+						</div>
+						<div id="collapse1" class="collapse show">
+							<div class="card-body">
+								<div class="row">
+									<div class="col-md-3 col-lg-12">
+										<div class="form-group">
+											<label class="control-label">Description</label>
+
+
+											<h:inputText onchange="submit()" class="form-control"
+												valueChangeListener="#{profilAdminMb.affecterDescriptionTache}" />
+
+										</div>
+									</div>
+
+
+
+
+								</div>
+
+								<div class="row">
+
+									<div class="col-md-1 col-lg-4">
+										<div class="form-group">
+											<label class="control-label">Statut</label>
+
+
+											<h:selectOneMenu class="custom-select"
+												value="#{profilAdminMb.statutSelect}">
+
+												<f:selectItems value="#{profilAdminMb.listStatus}"
+													var="statut" itemLabel="#{statut.toString()}"
+													itemValue="#{statut.toString()}">
+												</f:selectItems>
+											</h:selectOneMenu>
+
+										</div>
+									</div>
+									<div class="col-md-2 col-lg-3">
+										<div class="form-group">
+											<label class="control-label">Start Date</label>
+											<div class="input-group date">
+												<span class="input-group-append"> <p:calendar
+														name="dateStart" value="#{profilAdminMb.dateSelect}">
+														<p:ajax event="dateSelect"
+															listener="#{profilAdminMb.selectDateDebutTache}"></p:ajax>
+													</p:calendar>
+
+
+
+
+												</span>
+											</div>
+										</div>
+									</div>
+
+									<div class="col-md-2 col-lg-3">
+										<div class="form-group">
+											<label class="control-label">End Date</label>
+											<div class="input-group date">
+												<span class="input-group-append"> <p:calendar
+														name="dateStart" value="#{profilAdminMb.dateSelect}">
+														<p:ajax event="dateSelect"
+															listener="#{profilAdminMb.selectDateFinTache}"></p:ajax>
+													</p:calendar>
+
+
+												</span>
+											</div>
+										</div>
+									</div>
+
+
+								</div>
+
+
+								<div class="row">
+
+									<div class="col-md-1 col-lg-4">
+										<div class="form-group">
+											<label class="control-label">Priority</label>
+
+											<h:selectOneMenu class="custom-select"
+												value="#{profilAdminMb.todoPriority}">
+
+												<f:selectItems value="#{profilAdminMb.listPriority}"
+													var="type" itemLabel="#{type.toString()}"
+													itemValue="#{type.toString()}">
+												</f:selectItems>
+											</h:selectOneMenu>
+
+										</div>
+									</div>
+
+
+
+								</div>
+
+
+								<div class="row">
+									<div class="col-md-2 col-lg-3">
+										<div class="form-group">
+											<h:commandButton update ="datatable" class="btn btn-primary"
+												action="#{profilAdminMb.creerTache(profilAdminMb.tacheCree)}"
+												value="Valid" />
+
+										</div>
+									</div>
+
+								</div>
+
+
+							</div>
+							`
+						</div>
+					</div>
+		
+		
+		<!-- ici  -->
+				</div>
+			</div>
+		</section>
+​</h:form>
+	<!--End Section 1 -->
+​
+
+
+
+
+	<script
+		src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"
+		integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN"
+		crossorigin="anonymous"></script>
+	<script
+		src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"
+		integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV"
+		crossorigin="anonymous"></script>
+​
+</h:body>
+
+</html>

@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<datasources xmlns="http://www.jboss.org/ironjacamar/schema"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.jboss.org/ironjacamar/schema http://docs.jboss.org/ironjacamar/schema/datasources_1_0.xsd">
+	<datasource
+		jndi-name="java:jboss/datasources/StarEventDS"
+		pool-name="StarEventPool" enabled="true" use-java-context="true">
+		
+		<!-- TODO 1 : Nom du schéma à créer sur MySQL : star-event-db (en interclassement utf8-general-ci) -->
+		<!-- TODO 2 : remplacez le port local vers mysql server -->
+		<connection-url>jdbc:mysql://localhost:3307/star-event-db?useUnicode=true&amp;useJDBCCompliantTimezoneShift=true&amp;useLegacyDatetimeCode=false&amp;serverTimezone=UTC</connection-url>
+		<driver>mysql</driver>
+		<security>
+			<!-- TODO : remplacez vos identifiants locaux vers mysql server -->
+			<user-name>root</user-name>
+			<password>1Danouchkaz?</password>
+		</security>
+	</datasource>
+</datasources>
+

@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:a="http://xmlns.jcp.org/jsf/passthrough"
+	xmlns:ui="http://java.sun.com/jsf/facelets">
+
+<h:head>
+	<meta charset="UTF-8"></meta>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0"></meta>
+	<title>Offre</title>
+
+
+
+	<!-- Bootstrap -->
+	<link rel="stylesheet"
+		href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+		integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z"
+		crossorigin="anonymous"></link>
+
+	<!--Font Awesome-->
+	<script src="https://kit.fontawesome.com/dd4348a268.js"
+		crossorigin="anonymous"></script>
+
+	<!--CSS -->
+	<link rel="stylesheet" href="resources/css/styleReservation.css"></link>
+
+	<!--Script JS-->
+	<h:outputScript library="js" name="login.js" targer="body" />
+
+</h:head>
+
+<h:body>
+	<!-- Header with navbar ========================================= -->
+
+	<header>
+		<div class="container-fluid p0">
+			<nav class="navbar navbar-expand-lg navbar-light">
+				<a class="navbar-brand">Star Event</a>
+				<button class="navbar-toggler" type="button" data-toggle="collapse"
+					data-target="#navbarSupportedContent"
+					aria-controls="navbarSupportedContent" aria-expanded="false"
+					aria-label="Toggle navigation">
+					<span class="navbar-toggler-icon"></span>
+				</button>
+
+				<div class="collapse navbar-collapse" id="navbarSupportedContent">
+					<ul class="navbar-nav mr-auto">
+						<li class="nav-item dropdown"><a
+							class="nav-link dropdown-toggle" href="#" id="navbarDropdown"
+							role="button" data-toggle="dropdown" aria-haspopup="true"
+							aria-expanded="false"> Login </a>
+							<div class="dropdown-menu" aria-labelledby="navbarDropdown">
+								<a class="dropdown-item" href="#">Déconnexion</a>
+							</div></li>
+						<li class="nav-item"><a class="nav-link" href="#">Profil</a>
+						</li>
+						<li class="nav-item dropdown"><a
+							class="nav-link dropdown-toggle" href="#" id="navbarDropdown"
+							role="button" data-toggle="dropdown" aria-haspopup="true"
+							aria-expanded="false"> Mes Offres </a>
+							<div class="dropdown-menu" aria-labelledby="navbarDropdown">
+								<a class="dropdown-item" href="#">Mes Offres</a>
+							</div></li>
+						<li class="nav-item"><a class="nav-link" href="#">Réservations</a>
+						</li>
+					</ul>
+				</div>
+			</nav>
+		</div>
+	</header>
+
+	<!--End Header with NavBar ========================================= -->
+
+	<!--Data Table Reservation-->
+
+	<!-- #Main ============================ -->
+	<div class="page-container">
+		<!-- ### $App Screen Content ### -->
+		<main class='main-content bgc-grey-100'>
+			<div id='mainContent'>
+				<div class="container">
+					<div class="row">
+						<div class="col-md-12">
+							<div class="bgc-white bd bdrs-3 p-20 mB-20">
+								<h4 class="c-grey-900 mB-20">Mes Evenements</h4>
+								<div id="dataTable_wrapper" class="dataTables_wrapper">
+
+									<!-- Div Table Lenght-->
+									<div class="dataTables_length" id="dataTable_lenght">
+
+										<label> Show <select name="dataTable_length"
+											aria-controls="dataTable">
+												<option value="10">10</option>
+												<option value="25">25</option>
+												<option value="50">50</option>
+												<option value="100">100</option>
+										</select> entries
+										</label>
+									</div>
+
+									<!--Table dataTable-->
+									<table id="dataTable"
+										class="table table-striped table-bordered dataTable"
+										cellspacing="0" width="100%" role="grid"
+										aria-describedby="dataTable_info" style="width: 100%;">
+										<thead>
+
+											<tr>
+												
+												<th><h:outputText value="Start date" /></th>
+												<th><h:outputText value="End date" /></th>
+												<th><h:outputText value="Event's name" /></th>
+												<th><h:outputText value="Total Price" /></th>
+												<th><h:outputText value="xxxxxxxx" /></th>
+												
+												<th><h:outputText value="Guests number" /></th>
+												<th>Action</th>
+											</tr>
+										</thead>
+										<tbody>
+												<ui:repeat var="evenement" value="#{reservationMb.listEvenementsClient}">
+											<tr>
+											
+							
+												<td><h:outputText value="#{evenement.date_debut}" /></td>
+												<td><h:outputText value="#{evenement.date_fin}" /></td>
+												<td><h:outputText value="#{evenement.titreEvenement}" /></td>
+												<td><h:outputText value="#{evenement.prixTotalEvenement}" /></td>
+											<td>
+<h:selectOneMenu value="#{reservationMb.detailReservations(evenement.id_evenement)}">
+<f:selectItems value="#{reservationMb.listReservations}" var="reservation" itemLabel="#{reservation.offre.prixOffre}" itemValue="#{reservation.evenement.id_evenement}"></f:selectItems>
+</h:selectOneMenu>
+</td>
+
+												<td><h:outputText value="#{evenement.nbInvites}" /></td>
+												
+												<td class="text-center"><a class='btn btn-info btn-xs'
+													href="#"><span class="glyphicon glyphicon-edit"></span>
+														Valid</a> <a href="#" class="btn btn-danger btn-xs"><span
+														class="glyphicon glyphicon-remove"></span> Delete</a></td>
+											</tr>
+												</ui:repeat>
+										</tbody>
+
+									</table>
+
+									<!--Div dataTable paginate-->
+									<div class="dataTables_paginate paging_simple_numbers"
+										id="dataTable_paginate">
+
+										<a class="paginate_button previous disabled"
+											aria-controls="dataTable" data-dt-idx="0" tabinex="0"
+											id="dataTable_previous">Previous</a> <span> <a
+											class="paginate_button current" aria-controls="dataTable"
+											data-dt-idx="1" tabinex="0">1</a> <a
+											class="paginate_button current" aria-controls="dataTable"
+											data-dt-idx="2" tabinex="0">2</a> <a
+											class="paginate_button current" aria-controls="dataTable"
+											data-dt-idx="3" tabinex="0">3</a>
+										</span> <a class="paginate_button current" aria-controls="dataTable"
+											data-dt-idx="4" tabinex="0">Next</a>
+
+									</div>
+
+
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</main>
+
+	</div>
+
+	<section class="section-calendar"></section>
+
+	<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
+		integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
+		crossorigin="anonymous"></script>
+	<script
+		src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"
+		integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN"
+		crossorigin="anonymous"></script>
+	<script
+		src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"
+		integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV"
+		crossorigin="anonymous"></script>
+</h:body>
+</html>
